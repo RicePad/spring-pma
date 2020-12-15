@@ -53,11 +53,6 @@ public class Project {
 		this.description = description;
 	}
 	
-//Add application properties
-//Create interface
-//Connect to database
-//Save data to database	
-	
 	
 	
 }
