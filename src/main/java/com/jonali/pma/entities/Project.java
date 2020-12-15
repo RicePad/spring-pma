@@ -1,9 +1,11 @@
 package com.jonali.pma.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Project {
 	
 	@Id
@@ -51,7 +53,10 @@ public class Project {
 		this.description = description;
 	}
 	
-
+//Add application properties
+//Create interface
+//Connect to database
+//Save data to database	
 	
 	
 	
