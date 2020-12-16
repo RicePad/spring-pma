@@ -24,7 +24,7 @@ public class EmployeeController {
 		model.addAttribute("employee", anEmployee );
 		
 		
-		return "new-employee.html";
+		return "employees/new-employee.html";
 	}
 	
 	

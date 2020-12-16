@@ -32,7 +32,7 @@ public class HomepageController {
 		model.addAttribute("employeesList", employees);
 		
 		
-		return "homepage.html";
+		return "main/homepage.html";
 	}
 
 }
