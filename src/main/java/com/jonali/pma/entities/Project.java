@@ -1,5 +1,7 @@
 package com.jonali.pma.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,19 @@ public class Project {
 	private String description;
 	
 	
+	
+	// Build ManyToMany association 
+	private List<Employee> employees;
+	
+	
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
 	public Project() {
 		
 	}
