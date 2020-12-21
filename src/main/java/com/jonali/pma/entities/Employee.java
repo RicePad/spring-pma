@@ -1,5 +1,7 @@
 package com.jonali.pma.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,9 @@ public class Employee {
 	private String name;
 	private String lastName;
 	private String email;
+	
+	private List<Project> projects;
+	
 	
 	
 	public Employee() {

@@ -16,6 +16,9 @@ public class Project {
 	private String stage; //NOT STARTED, COMPLETED, INPROGRESS
 	private String description;
 	
+	private List<Employee> employees;
+
+	
 	
 	public Project() {
 		
