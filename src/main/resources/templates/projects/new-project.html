@@ -11,6 +11,15 @@
   <input type="text" id="pname" name="pname" th:field="${project.name}"><br>
   <label for="lname">Description:</label><br>
   <input type="text" id="description" name="description" th:field="${project.description}"><br><br>
+  <div class="form-group row">
+			<select th:field="*{employees}" multiple="multiple">
+				<option th:each = "employee : ${allEmployees}"
+						th:value = "${employee.employeeId}"
+						th:text = "${employee.firstName}">
+				</option>
+			</select>
+		</div>
+		
   <label for="stage">Stage:</label><br>
   <input type="text" id="stage" name="stage"th:field="${project.stage}"><br><br>
   <input type="submit" value="Submit">
