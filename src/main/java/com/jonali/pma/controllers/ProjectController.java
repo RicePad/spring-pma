@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jonali.pma.dao.EmployeeRepository;
 import com.jonali.pma.dao.ProjectRepository;
+import com.jonali.pma.entities.Employee;
 import com.jonali.pma.entities.Project;
 
 @Controller
@@ -16,14 +18,28 @@ public class ProjectController {
 	@Autowired
 	ProjectRepository proRepo;
 	
+	@Autowired
+	EmployeeRepository empService;
+	
 	@RequestMapping("/new")
-	public String displayProcessFormData(Model model) {
+	public String displayProjects(Model model) {
 		
 		Project aProject = new Project();
 		
 		model.addAttribute("project", aProject);
 		
 		return "projects/new-project.html";
+	}
+	
+	@RequestMapping("new/project")
+	public String displayProjectForm(Model model) {
+		
+		Project aProject = new Project();
+		Iterable<Employee> employees = empService.findAll();
+		model.addAttribute("projects", aProject);
+		model.addAttribute("allEmployees", employees);		
+		
+		return "projects/new-project";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
