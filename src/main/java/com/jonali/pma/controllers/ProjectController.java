@@ -21,7 +21,6 @@ public class ProjectController {
 	@Autowired
 	EmployeeRepository empService;
 	
-	@RequestMapping("/new")
 	public String displayProjects(Model model) {
 		
 		Project aProject = new Project();
@@ -31,16 +30,18 @@ public class ProjectController {
 		return "projects/new-project.html";
 	}
 	
-	@RequestMapping("new/project")
+	@RequestMapping("/new")
 	public String displayProjectForm(Model model) {
 		
 		Project aProject = new Project();
 		Iterable<Employee> employees = empService.findAll();
-		model.addAttribute("projects", aProject);
+		model.addAttribute("project", aProject);
 		model.addAttribute("allEmployees", employees);		
 		
 		return "projects/new-project";
 	}
+	
+	
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String createProject(Project project, Model model) {
