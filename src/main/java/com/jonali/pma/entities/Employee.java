@@ -2,26 +2,18 @@ package com.jonali.pma.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Employee {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long employeeId;
-
-	private String name;
-	private String lastName;
-	private String email;
-	
-	
-	// Build ManyToMany association 
-	private List<Project> projects;
-	
 	
 	public List<Project> getProjects() {
 		return projects;
@@ -30,7 +22,21 @@ public class Employee {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long employeeId;
 
+	private String name;
+	private String lastName;
+	private String email;
+	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			   fetch = FetchType.LAZY)
+	@JoinTable(name="project_employee",
+	joinColumns=@JoinColumn(name="employee_id"),
+	inverseJoinColumns= @JoinColumn(name="project_id"))
+	private List<Project> projects;
+	
 	public Employee() {
 		
 	}
@@ -41,6 +47,7 @@ public class Employee {
 		this.lastName = lastName;
 		this.email = email;
 	}
+	
 	public long getEmployeeId() {
 		return employeeId;
 	}

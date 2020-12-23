@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
+ <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
 <title>Project Management App: Spring Framework</title>
@@ -11,6 +14,15 @@
   <input type="text" id="pname" name="pname" th:field="${project.name}"><br>
   <label for="lname">Description:</label><br>
   <input type="text" id="description" name="description" th:field="${project.description}"><br><br>
+   <div class="form-group">
+			<select th:field="*{employees}" multiple="multiple">
+				<option th:each = "employee : ${allEmployees}"
+						th:value = "${employee.employeeId}"
+						th:text = "${employee.name}">
+				</option>
+			</select>
+	</div>
+		
   <label for="stage">Stage:</label><br>
   <input type="text" id="stage" name="stage"th:field="${project.stage}"><br><br>
   <input type="submit" value="Submit">

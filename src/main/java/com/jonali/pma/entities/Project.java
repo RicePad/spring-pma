@@ -1,5 +1,6 @@
 package com.jonali.pma.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,37 +9,30 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
-//clean version
-=======
+
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
->>>>>>> a7c2647b4bfebb8b2568dc08fa9a968e60b954c3
 @Entity
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long projectId;
 	
 	private String name;
 	private String stage; //NOT STARTED, COMPLETED, INPROGRESS
 	private String description;
 	
-	
-	
-	// Build ManyToMany association 
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-			fetch = FetchType.LAZY)
+			   fetch = FetchType.LAZY)
 	@JoinTable(name="project_employee",
-					joinColumns=@JoinColumn(name="project_id"),
-					inverseJoinColumns= @JoinColumn(name="employee_id")
-	)
-	
+				joinColumns=@JoinColumn(name="project_id"), 
+				inverseJoinColumns= @JoinColumn(name="employee_id"))
 	private List<Employee> employees;
-	
+
 	
 	public List<Employee> getEmployees() {
 		return employees;
@@ -65,6 +59,18 @@ public class Project {
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
 	}
+	
+	
+	// convenience method:
+
+	public void addEmployee(Employee emp) {
+		if(employees==null) {
+			employees = new ArrayList<>();
+			}
+			employees.add(emp);
+		}
+	
+
 	public String getName() {
 		return name;
 	}
