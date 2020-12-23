@@ -37,6 +37,18 @@ public class Employee {
 	inverseJoinColumns= @JoinColumn(name="project_id"))
 	private List<Project> projects;
 	
+	// Build ManyToMany association 
+	private List<Project> projects;
+	
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
 	public Employee() {
 		
 	}
