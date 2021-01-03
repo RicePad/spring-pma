@@ -4,6 +4,7 @@ package com.jonali.pma.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ import com.jonali.pma.entities.Project;
 @Controller
 public class HomepageController {
 	
+	@Value("${version}")
+	private String ver;
+	
 	@Autowired
 	ProjectRepository proRepo;
 	
@@ -24,6 +28,8 @@ public class HomepageController {
 	
 	@RequestMapping("/")
 	public String displayHomepage(Model model) {
+		
+		model.addAttribute("versionNumber", ver);
 		
 		List<Project> projects = proRepo.findAll();
 		model.addAttribute("projectsList", projects);
