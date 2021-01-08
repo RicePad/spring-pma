@@ -14,6 +14,4 @@ WORKDIR /usr/local/bin/
 
 ADD target/pma-app.jar .
 
-# CMD ["/bin/bash"]
-
 ENTRYPOINT ["java", "-jar", "pma-app.jar"]1
